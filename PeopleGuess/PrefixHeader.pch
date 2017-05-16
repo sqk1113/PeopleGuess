@@ -1,0 +1,68 @@
+//
+//  PrefixHeader.pch
+//  PeopleGuess
+//
+//  Created by mac on 17/2/9.
+//  Copyright © 2017年 mac. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "DefineURL.h"
+
+
+#define PFTHINFONT @"PingFangSC-Thin"
+#define PFREGULARFONT @"PingFangSC-Regular"
+#define PFMEDIUMFONT @"PingFangSC-Medium"
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define SCREEN_WIDTH_RATE SCREEN_WIDTH / 375.0 //比率
+//工高度适配
+#define NAVIGATIONBAR_HEIGHT                     44
+#define STATUSBAR_HEIGHT                         20
+
+#define VIEWY(view) (view.frame.origin.y+view.frame.size.height)
+#define VIEWX(view) (view.frame.origin.x+view.frame.size.width)
+#define RATEFLOAT(float) (float * SCREEN_WIDTH_RATE)
+#define ApplicationDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+#define WS(weakSelf)        __weak __typeof(&*self)weakSelf = self
+
+
+//导航栏主颜色
+#define NAVBARMAINCOLOR  UIColorFromRGB(0x89282a)
+#define BACKGROINDCOLOR  UIColorFromRGB(0xf7f7f7)
+//背景颜色转换
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+/** 获取系统版本 */
+#define iOS_VERSION ([[[UIDevice currentDevice] systemVersion] floatValue])
+#define CurrentSystemVersion ([[UIDevice currentDevice] systemVersion])
+
+/** 是否为iOS6 */
+#define iOS6 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) ? YES : NO)
+
+/** 是否为iOS7 */
+#define iOS7 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ? YES : NO)
+
+/** 是否为iOS8 */
+#define iOS8 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) ? YES : NO)
+
+/** 是否为iOS9 */
+#define iOS9 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0) ? YES : NO)
+
+//判断字符串是否为空
+#define NULLString(string) ([string isEqualToString:@""] || (string == nil) || [string isEqualToString:@"<null>"] || [string isKindOfClass:[NSNull class]])
+//返回字符串 为空则返回@""否则则返回本身
+#define String(string) (NULLString(string) ? @"":string)
+
+////----------------------ABOUT PRINTING LOG 打印日志 ----------------------------
+//Using dlog to print while in debug model.        调试状态下打印日志
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+
+#endif /* PrefixHeader_pch */
